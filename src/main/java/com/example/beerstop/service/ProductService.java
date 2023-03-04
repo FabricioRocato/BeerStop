@@ -30,12 +30,12 @@ public class ProductService {
         return repository.findByNamev2("%"+searchTerm+"%", PageRequest.of(pageNumber, pageSize));
     }
 
-    public Optional<Product> findProduct(Long employeeId) {
-        return repository.findById(employeeId);
+    public Optional<Product> findProduct(Long productId) {
+        return repository.findById(productId);
     }
 
-    public void deleteById(Long employeeId) {
-        repository.deleteById(employeeId);
+    public void deleteById(Long productId) {
+        repository.deleteById(productId);
     }
 
 }

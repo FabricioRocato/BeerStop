@@ -13,10 +13,10 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
 
-    @Query("select c from Employee c where c.name ilike :searchTerm ")
+    @Query("select c from Product c where c.name ilike :searchTerm ")
     List<Product> findByName(String searchTerm);
 
-    @Query(value = "select c from Employee c where c.name ilike :searchTerm")
+    @Query(value = "select c from Product c where c.name ilike :searchTerm")
     Page<Product> findByNamev2(@Param("searchTerm") String searchTerm, Pageable pageable);
 
 }

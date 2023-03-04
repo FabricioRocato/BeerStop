@@ -27,17 +27,17 @@ public class ComandaService {
         return repository.findAllByOrderByIdDesc(pageable);
     }
 
-    public Page<Comanda> findByCustomerIdOrderByIdDesc(int pageNumber, int pageSize, Long employee){
+    public Page<Comanda> findByCustomerIdOrderByIdDesc(int pageNumber, int pageSize, Long comanda){
         Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return repository.findByCustomerIdOrderByIdDesc(pageable, employee);
+        return repository.findByCustomerIdOrderByIdDesc(pageable, comanda);
     }
 
-    public Optional<Comanda> findComanda(Long timeSheetId) {
-        return repository.findById(timeSheetId);
+    public Optional<Comanda> findComanda(Long comandaId) {
+        return repository.findById(comandaId);
     }
 
-    public void deleteById(Long timeSheetId) {
-        repository.deleteById(timeSheetId);
+    public void deleteById(Long comandaId) {
+        repository.deleteById(comandaId);
     }
 
 }

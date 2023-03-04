@@ -34,19 +34,19 @@ public class ComandaApi {
     @GetMapping("v2")
     public Page<Comanda> findByCustomerIdOrderByIdDesc(@RequestParam(value = "pageNumber", defaultValue = "0", required = false) int pageNumber,
                                                          @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
-                                                         @RequestParam Long employee) {
-        return service.findByCustomerIdOrderByIdDesc(pageNumber, pageSize,employee);
+                                                         @RequestParam Long comanda) {
+        return service.findByCustomerIdOrderByIdDesc(pageNumber, pageSize,comanda);
     }
 
     @PutMapping
     public String update(@RequestBody Comanda comanda) {
         service.save(comanda);
-        return "Comanda saved with success";
+        return "Comanda updated with success";
     }
 
     @DeleteMapping("/{comandaId}")
     public String deletecomanda(@PathVariable Long comandaId) {
         service.deleteById(comandaId);
-        return "Time sheet " + comandaId + " Was deleted";
+        return "Comanda " + comandaId + " Was deleted";
     }
 }

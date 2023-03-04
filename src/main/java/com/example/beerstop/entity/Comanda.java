@@ -19,16 +19,16 @@ public class Comanda {
     @Column(name = "table_number")
     private Long tableNumber;
 
-    @OneToMany
-    @JoinColumn(name = "employee")
-    private List<Employee> employee;
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 
     @ManyToOne
-    @JoinColumn(name = "customer")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany
-    @JoinColumn(name = "product")
+    @ManyToMany
+    @JoinColumn(name = "product_id")
     private List<Product> product;
 
 }

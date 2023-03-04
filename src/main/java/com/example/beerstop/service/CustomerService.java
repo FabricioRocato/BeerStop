@@ -18,8 +18,8 @@ public class CustomerService {
     @Autowired
     private CustomerRepository repository;
 
-    public void save(Customer client) {
-        repository.save(client);
+    public void save(Customer customer) {
+        repository.save(customer);
 
     }
 
@@ -27,8 +27,8 @@ public class CustomerService {
         return repository.findById(customerId);
     }
 
-    public void deleteById(Long companyId) {
-        repository.deleteById(companyId);
+    public void deleteById(Long customerId) {
+        repository.deleteById(customerId);
     }
 
     public List<Customer> findByName(String searchTerm){

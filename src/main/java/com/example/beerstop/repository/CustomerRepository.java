@@ -18,7 +18,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     @Query(value = "select c from Customer c where c.name ilike :searchTerm")
     Page<Customer> findByNamev2(@Param("searchTerm") String searchTerm, Pageable pageable);
-
 }
 
 

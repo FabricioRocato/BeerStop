@@ -1,44 +1,54 @@
 package com.example.beerstop.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
-@AllArgsConstructor
 @Table(name = "comanda")
 public class Comanda {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
-    @Column(name = "table_number")
-    private Long tableNumber;
 
-    @Column(name = "is_open")
-    private Boolean isOpen;
+    private String numeroComanda;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
+    private Status status;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemComanda> itens;
 
-    @ManyToMany
-    @JoinTable(name = "comanda_product",
-    joinColumns = @JoinColumn(name = "comanda_id"),
-    inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> product;
+    // construtores, getters e setters
 
-    private Comanda() {
-        this.isOpen = Boolean.TRUE;
+    public void adicionarItem(ItemComanda item) {
+        itens.add(item);
     }
+
+    public void removerItem(ItemComanda item) {
+        itens.remove(item);
+    }
+
+    public List<ItemComanda> getItens() {
+        return itens;
+    }
+
+    public double getTotalPagar() {
+        double total = 0.0;
+        for (ItemComanda item : itens) {
+            total += item.getSubtotal();
+        }
+        return total;
+    }
+
+    public Comanda() {
+        this.status = Status.OPEN;
+    }
+
 }

@@ -17,18 +17,14 @@ public class Employee {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "email")
-    private String email;
-
     @Column(name = "cellphone")
     private String cellphone;
-
 
     @Column(name = "supervisor")
     private Boolean supervisor;
 
-    @Column(name = "password")
-    private String password;
+//    @Column(name = "password")
+//    private String password;
 
     public Employee(){
         this.supervisor = false;

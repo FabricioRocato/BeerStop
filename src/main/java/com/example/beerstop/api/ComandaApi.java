@@ -31,13 +31,6 @@ public class ComandaApi {
         return service.findAllByOrderByIdDesc(pageNumber, pageSize);
     }
 
-    @GetMapping("v2")
-    public Page<Comanda> findByCustomerIdOrderByIdDesc(@RequestParam(value = "pageNumber", defaultValue = "0", required = false) int pageNumber,
-                                                         @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
-                                                         @RequestParam Long comanda) {
-        return service.findByCustomerIdOrderByIdDesc(pageNumber, pageSize,comanda);
-    }
-
     @PutMapping
     public String update(@RequestBody Comanda comanda) {
         service.save(comanda);

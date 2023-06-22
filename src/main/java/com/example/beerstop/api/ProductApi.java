@@ -29,8 +29,8 @@ public class ProductApi {
 
     @GetMapping("/v2")
     public Page<Product> findByNamev2(@RequestParam String searchTerm,
-                                       @RequestParam(name = "pageNumber", defaultValue = "0") Integer pageNumber,
-                                       @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
+                                   @RequestParam(name = "pageNumber", defaultValue = "0") Integer pageNumber,
+                                   @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
         return service.findByNamev2(pageNumber, pageSize, searchTerm);
     }
 

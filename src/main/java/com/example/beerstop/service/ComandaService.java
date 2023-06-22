@@ -1,14 +1,19 @@
 package com.example.beerstop.service;
 
 import com.example.beerstop.entity.Comanda;
+import com.example.beerstop.entity.ItemComanda;
 import com.example.beerstop.repository.ComandaRepository;
+import com.example.beerstop.repository.ItemComandaRepository;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,19 +23,22 @@ public class ComandaService {
     @Autowired
     private ComandaRepository repository;
 
-    public void save(Comanda comanda) {
-        repository.save(comanda);
+    private ItemComandaRepository itemComandaRepository;
+
+        @Transactional
+        public Comanda save(Comanda comanda) {
+            return repository.save(comanda);
+        }
+
+    public Page<Comanda> findAllByOrderByIdDesc(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by("id").descending());
+        Page<Comanda> comandasPage = repository.findAll(pageable);
+        // Inicialize os itens de comanda com os produtos
+        comandasPage.getContent().forEach(comanda -> Hibernate.initialize(comanda.getItens()));
+
+        return comandasPage;
     }
 
-    public Page<Comanda> findAllByOrderByIdDesc(int pageNumber,int pageSize){
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return repository.findAllByOrderByIdDesc(pageable);
-    }
-
-    public Page<Comanda> findByCustomerIdOrderByIdDesc(int pageNumber, int pageSize, Long comanda){
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return repository.findByCustomerIdOrderByIdDesc(pageable, comanda);
-    }
 
     public Optional<Comanda> findComanda(Long comandaId) {
         return repository.findById(comandaId);

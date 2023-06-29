@@ -1,7 +1,7 @@
 package com.example.beerstop.api;
 
 import com.example.beerstop.entity.Comanda;
-import com.example.beerstop.entity.Customer;
+import com.example.beerstop.entity.Product;
 import com.example.beerstop.service.MovementStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,4 +24,9 @@ public class MovementStockAPI {
         return service.finishMovement(comandaId);
     }
 
+    @PostMapping("/saida/{productId}/{quantity}")
+    public Product entradaStock(@PathVariable Long productId,
+                                @PathVariable int quantity){
+        return service.entradaStock(productId, quantity);
+    }
 }

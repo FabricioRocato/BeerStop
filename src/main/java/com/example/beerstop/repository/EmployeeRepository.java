@@ -18,6 +18,5 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long> {
 
     @Query(value = "select c from Employee c where c.name ilike :searchTerm")
     Page<Employee> findByNamev2(@Param("searchTerm") String searchTerm, Pageable pageable);
-    List<Employee> findBySupervisorIsTrue();
 
 }

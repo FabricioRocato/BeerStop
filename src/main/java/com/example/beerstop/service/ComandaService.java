@@ -23,8 +23,6 @@ public class ComandaService {
     @Autowired
     private ComandaRepository repository;
 
-    private ItemComandaRepository itemComandaRepository;
-
         @Transactional
         public Comanda save(Comanda comanda) {
             return repository.save(comanda);

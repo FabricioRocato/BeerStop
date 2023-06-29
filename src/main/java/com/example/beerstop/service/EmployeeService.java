@@ -30,10 +30,6 @@ public class EmployeeService {
         return repository.findByNamev2("%"+searchTerm+"%", PageRequest.of(pageNumber, pageSize));
     }
 
-    public List<Employee> findBySupervisorIsTrue(){
-        return repository.findBySupervisorIsTrue();
-    }
-
     public Optional<Employee> findEmployee(Long employeeId) {
         return repository.findById(employeeId);
     }

@@ -23,11 +23,6 @@ public class EmployeeApi {
         return "Employee saved with success";
     }
 
-    @GetMapping("/supervisor")
-    public List<Employee> findBySupervisorIsTrue(){
-        return service.findBySupervisorIsTrue();
-    }
-
     @GetMapping
     public ResponseEntity findByName(@RequestParam String searchTerm) {
         return ResponseEntity.ok(service.findByName(searchTerm));

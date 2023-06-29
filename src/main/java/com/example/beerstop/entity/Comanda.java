@@ -3,9 +3,7 @@ package com.example.beerstop.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -20,10 +18,17 @@ public class Comanda {
 
     private String numeroComanda;
 
+    @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
     private List<ItemComanda> itens;
+
+    @ManyToOne
+    private Customer customer;
+
+    @ManyToOne
+    private Employee employee;
 
     // construtores, getters e setters
 

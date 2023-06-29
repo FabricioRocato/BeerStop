@@ -9,6 +9,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "customer")
 public class Customer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -18,4 +19,7 @@ public class Customer {
 
     @Column(name = "cpf")
     private String cpf;
+
+    @Column(name = "phone-number")
+    private Integer phoneNumber;
 }

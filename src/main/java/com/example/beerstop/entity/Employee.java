@@ -20,13 +20,4 @@ public class Employee {
     @Column(name = "cellphone")
     private String cellphone;
 
-    @Column(name = "supervisor")
-    private Boolean supervisor;
-
-//    @Column(name = "password")
-//    private String password;
-
-    public Employee(){
-        this.supervisor = false;
-    }
 }

@@ -19,4 +19,7 @@ public class Product {
     private int quantityInStock;
     private double price;
 
+    @Enumerated(EnumType.STRING)
+    private ProductGroup productGroup;
+
 }

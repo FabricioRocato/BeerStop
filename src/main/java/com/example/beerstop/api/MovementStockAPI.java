@@ -24,9 +24,12 @@ public class MovementStockAPI {
         return service.finishMovement(comandaId);
     }
 
-    @PostMapping("/saida/{productId}/{quantity}")
-    public Product entradaStock(@PathVariable Long productId,
+    @PostMapping("/movement/{productId}/{quantity}")
+    public Product movementStock(@PathVariable Long productId,
                                 @PathVariable int quantity){
-        return service.entradaStock(productId, quantity);
+        return service.movementStock(productId, quantity);
     }
+
+
+
 }

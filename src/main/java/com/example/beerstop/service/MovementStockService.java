@@ -44,7 +44,7 @@ public class MovementStockService {
         return item;
     }
 
-    public Product entradaStock(Long productId, int quantity) {
+    public Product movementStock(Long productId, int quantity) {
         var produto = productRepository.findProductId(productId);
         productRepository.updateStock(quantity,productId);
         return produto;

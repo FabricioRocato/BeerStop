@@ -1,18 +1,14 @@
 package com.example.beerstop.service;
 
-import com.example.beerstop.entity.Comanda;
-import com.example.beerstop.entity.ItemComanda;
-import com.example.beerstop.entity.Product;
-import com.example.beerstop.entity.Status;
+import com.example.beerstop.entity.*;
 import com.example.beerstop.repository.ComandaRepository;
+import com.example.beerstop.repository.MovementRepository;
 import com.example.beerstop.repository.MovementStockRepository;
 import com.example.beerstop.repository.ProductRepository;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -26,6 +22,26 @@ public class MovementStockService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private MovementRepository movementRepository;
+
+    public Movement save(Movement movement) {
+        var produto = movement.getProduto().getId();
+        int produtoQuantity = productRepository.getProductQuantity(movement.getProduto().getId());
+        var quantity = movement.getQuantity();
+        if (movement.getMovementType().equals(MovementType.SAIDA)){
+            var move = produtoQuantity - quantity;
+            productRepository.updateStock(move,produto);
+            var mov = -quantity;
+            movement.setQuantity(mov);
+        } else {
+            var move = produtoQuantity + quantity;
+            productRepository.updateStock(move,produto);
+        }
+        movementRepository.save(movement);
+        return movement;
+    }
 
     public Comanda closeComanda(Long comandaId) {
         var comanda = repository.closeComanda(comandaId);
@@ -46,6 +62,7 @@ public class MovementStockService {
 
     public Product movementStock(Long productId, int quantity) {
         var produto = productRepository.findProductId(productId);
+        var stock = produto.getQuantityInStock();
         productRepository.updateStock(quantity,productId);
         return produto;
     }

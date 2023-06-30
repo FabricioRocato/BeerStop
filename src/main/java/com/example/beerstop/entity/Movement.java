@@ -14,10 +14,12 @@ public class Movement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "produto_id")
+    @ManyToOne
     private Product produto;
     private String descricao;
+    private int quantity;
+
+    @Enumerated(EnumType.STRING)
     private MovementType movementType;
 
 }

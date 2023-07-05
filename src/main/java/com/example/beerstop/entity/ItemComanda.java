@@ -3,7 +3,6 @@ package com.example.beerstop.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
 
 @Getter
 @Setter
@@ -20,16 +19,6 @@ public class ItemComanda {
     private Product produto;
 
     private int quantidade;
-
-    // construtores, getters e setters
-
-    public ItemComanda() {
-    }
-
-    public ItemComanda(Product produto, int quantidade) {
-        this.produto = produto;
-        this.quantidade = quantidade;
-    }
 
     public double getSubtotal() {
         return produto.getPrice() * quantidade;

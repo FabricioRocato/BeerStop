@@ -2,13 +2,14 @@ package com.example.beerstop.api;
 
 import com.example.beerstop.entity.Customer;
 import com.example.beerstop.service.CustomerService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-
+@Api
 @RestController
 @RequestMapping("customer")
 public class CustomerApi {

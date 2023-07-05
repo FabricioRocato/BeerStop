@@ -30,6 +30,4 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Query(nativeQuery = true, value = "select quantity_in_stock from product where id = :id ")
     int getProductQuantity(@Param("id") Long id);
 
-
-
 }

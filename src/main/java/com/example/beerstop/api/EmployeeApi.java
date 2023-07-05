@@ -2,6 +2,7 @@ package com.example.beerstop.api;
 
 import com.example.beerstop.entity.Employee;
 import com.example.beerstop.service.EmployeeService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+@Api
 @RestController
 @RequestMapping("employee")
 public class EmployeeApi {

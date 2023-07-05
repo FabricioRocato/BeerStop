@@ -2,11 +2,12 @@ package com.example.beerstop.api;
 
 import com.example.beerstop.entity.*;
 import com.example.beerstop.service.MovementStockService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-
+@Api
 @RestController
 @RequestMapping("movement")
 public class MovementStockAPI {

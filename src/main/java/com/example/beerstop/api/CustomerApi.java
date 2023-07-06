@@ -8,18 +8,23 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
+
 @Api
 @RestController
 @RequestMapping("customer")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class CustomerApi {
 
     @Autowired
     private CustomerService service;
 
     @PostMapping
-    public String save(@RequestBody Customer customer) {
+    public String save(@RequestBody Customer customer, jakarta.servlet.http.HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         service.save(customer);
+
         return "Customer saved with success";
     }
 
@@ -35,8 +40,8 @@ public class CustomerApi {
 
     @GetMapping("/v2")
     public Page<Customer> findByNamev2(@RequestParam String searchTerm,
-                                       @RequestParam(name = "pageNumber", defaultValue = "0") Integer pageNumber,
-                                       @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
+            @RequestParam(name = "pageNumber", defaultValue = "0") Integer pageNumber,
+            @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
         return service.findByNamev2(pageNumber, pageSize, searchTerm);
     }
 

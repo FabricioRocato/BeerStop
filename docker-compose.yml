@@ -7,4 +7,19 @@ services:
     environment:
       POSTGRES_PASSWORD: exmple
     ports:
-      - "5432:5432"
+      - 5432:5432
+
+  app:
+    image: beerhouse
+    container_name: beerhouse_app
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+    ports:
+      - 8080:8080
+
+networks:
+  x-custom-network:
+    driver: bridge
+

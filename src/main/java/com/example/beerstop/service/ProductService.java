@@ -1,5 +1,6 @@
 package com.example.beerstop.service;
 
+import com.example.beerstop.entity.Movement;
 import com.example.beerstop.entity.Product;
 import com.example.beerstop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class ProductService {
+
     @Autowired
     private ProductRepository repository;
     public void save(Product product) {
@@ -36,6 +38,10 @@ public class ProductService {
 
     public void deleteById(Long productId) {
         repository.deleteById(productId);
+    }
+
+    public List<Product> ProdutoEstoque(){
+        return repository.ProdutoEstoque();
     }
 
 }

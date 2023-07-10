@@ -24,8 +24,10 @@ public class ProductGroupApi {
     }
 
     @GetMapping
-    public ResponseEntity findByName(@RequestParam String searchTerm) {
-        return ResponseEntity.ok(service.findByName(searchTerm));
+    public Page<ProductGroup> findByName(@RequestParam String searchTerm,
+                                         @RequestParam(name = "pageNumber", defaultValue = "0") Integer pageNumber,
+                                         @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
+        return service.findByName(pageNumber, pageSize, searchTerm);
     }
 
     @PutMapping

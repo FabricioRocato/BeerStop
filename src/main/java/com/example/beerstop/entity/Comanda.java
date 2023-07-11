@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,7 +23,7 @@ public class Comanda {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemComanda> itens;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,7 +34,7 @@ public class Comanda {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Employee employee;
 
-    // construtores, getters e setters
+    // Constructors, getters, and setters
 
     public void adicionarItem(ItemComanda item) {
         itens.add(item);
@@ -58,5 +59,4 @@ public class Comanda {
     public Comanda() {
         this.status = Status.OPEN;
     }
-
 }

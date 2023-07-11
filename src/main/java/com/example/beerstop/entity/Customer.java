@@ -20,6 +20,6 @@ public class Customer {
     @Column(name = "cpf")
     private String cpf;
 
-    @Column(name = "phone_number")
+    @Column(name = "phone_number" )
     private Long phoneNumber;
 }

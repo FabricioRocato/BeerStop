@@ -17,6 +17,9 @@ public class Employee {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "cellphone")
     private String cellphone;
 

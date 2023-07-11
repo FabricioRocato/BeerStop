@@ -21,5 +21,5 @@ public class Customer {
     private String cpf;
 
     @Column(name = "phone_number" )
-    private Long phoneNumber;
+    private String phoneNumber;
 }
